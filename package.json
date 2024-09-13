@@ -1,0 +1,23 @@
+{
+  "name": "content-metadata-api-automation-test",
+  "version": "1.0.0",
+  "description": "David Boydell's response to the Senior Tester Take Home Test – Content Metadata",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david-boydell/content-metadata-api-automation-test.git"
+  },
+  "author": "David Boydell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/david-boydell/content-metadata-api-automation-test/issues"
+  },
+  "homepage": "https://github.com/david-boydell/content-metadata-api-automation-test#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.0.0",
+    "got": "^14.4.2"
+  }
+}
