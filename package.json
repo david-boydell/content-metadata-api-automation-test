@@ -19,7 +19,8 @@
   "type": "module",
   "dependencies": {
     "@cucumber/cucumber": "^11.0.0",
-    "got": "^14.4.2"
+    "got": "^14.4.2",
+    "lodash.get": "^4.4.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.10.0",
