@@ -16,6 +16,7 @@
     "url": "https://github.com/david-boydell/content-metadata-api-automation-test/issues"
   },
   "homepage": "https://github.com/david-boydell/content-metadata-api-automation-test#readme",
+  "type": "module",
   "dependencies": {
     "@cucumber/cucumber": "^11.0.0",
     "got": "^14.4.2"

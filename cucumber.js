@@ -1,6 +1,7 @@
 export default {
   worldParameters: {
-    baseUrl: process.env.MY_APP_URL || 'https://testapi.io',
+    baseUrl: 'https://testapi.io',
+    responseTimeMax: 1000,
   },
   format: ['html:cucumber-report.html'],
 }
