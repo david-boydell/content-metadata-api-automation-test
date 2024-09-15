@@ -1,6 +1,6 @@
 # content-metadata-api-automation-test
 ## Requirements
-Node v18.20.4
+Node v20.17.0
 ## Installation
 Clone the repo then use the following steps:
 1. `cd content-metadata-api-automation-test`
