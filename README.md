@@ -25,5 +25,4 @@ Once the tests have finished running:
 
 ## Caveats
 1. I have not used `Given` in my feature files or step definition files, this is intentional.
-2. Scenario 6 verifies the Date header to within 1 second, rather than exactly, to reduce potential flaky behaviour.
-3. I have included eslint and prettier. If this interferes with your set up please uninstall.
+2. I have included eslint and prettier. If this interferes with your set up please uninstall.
