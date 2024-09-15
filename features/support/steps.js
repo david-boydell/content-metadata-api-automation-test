@@ -4,17 +4,23 @@ import path from 'path'
 import got from 'got'
 import get from 'lodash.get'
 
-When('I make a request to {string}', async function (url) {
-  this.res = await got.get(path.join(this.parameters.baseUrl, url))
+When('I make a request to {string}', async function (string) {
+  this.res = await got.get(path.join(this.parameters.baseUrl, string), {
+    throwHttpErrors: false,
+  })
   this.res.json = JSON.parse(this.res.body)
 })
 
-Then('the response code is {string}', async function (responseCode) {
-  assert.strictEqual(this.res.statusCode.toString(), responseCode)
+Then('the response code is {string}', async function (string) {
+  assert.strictEqual(this.res.statusCode.toString(), string)
 })
 
 Then('the response time is below {int} milliseconds', function (int) {
   assert(this.res.timings.phases.total < int)
+})
+
+Then('the {string} {string} property exists', function (string, string1) {
+  assert(string1 in get(this.res.json, dotPath(string)))
 })
 
 Then('the {string} has a value', function (string) {
