@@ -8,17 +8,17 @@ Scenario: 1. A valid HTTP response is received
     And the response time is below 1000 milliseconds
   
 Scenario: 2. Id and type are populated
-  Then the "channel id" has a value
-    And each "elements" "episode type" has a value of "episode"
+  Then the "schedule channel id" has a value
+    And each "schedule elements" "episode type" has a value of "episode"
 
 Scenario: 3. Episode titles are populated
-  Then each "elements episode title" has a value
+  Then each "schedule elements" "episode title" has a value
 
-Scenario: 4. Only one episode has a valsue of "live"
-  Then 1 "elements episode" has a value of "live"
+Scenario: 4. Only one episode has a value of "live"
+  Then 1 "schedule elements" "episode live" has a value of "true"
 
 Scenario: 5. Transmission start date is before transmission end date
-  Then each "elements transmission_start_date" is before the "elements transmission_end_date"
+  Then each "schedule elements" "transmission_start" is before "transmission_end"
 
 Scenario: 6. The Date value is the current time
   Then the Date header value is the current time
