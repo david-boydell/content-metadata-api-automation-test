@@ -1,4 +1,4 @@
-import { Given, When, Then } from '@cucumber/cucumber'
+import { When, Then, defineParameterType } from '@cucumber/cucumber'
 import assert from 'node:assert/strict'
 import path from 'path'
 import got from 'got'
@@ -13,25 +13,54 @@ Then('the response code is {string}', async function (responseCode) {
   assert.strictEqual(this.res.statusCode.toString(), responseCode)
 })
 
-Then('the response time is below {int} milliseconds', function (responseTime) {
-  assert(this.res.timings.phases.total < responseTime)
+Then('the response time is below {int} milliseconds', function (int) {
+  assert(this.res.timings.phases.total < int)
 })
 
 Then('the {string} has a value', function (string) {
-  assert.ok(get(this.res.json, dotPath(this.res.json, string)))
+  assert.ok(get(this.res.json, dotPath(string)))
 })
 
-Then('each {array} {path} has a value', function (array, path) {
-  arr(this.res.json, array).forEach((element) => {
-    assert.ok(get(this.res.json, dotPath(this.res.json, string)))
+Then('each {string} {string} has a value', function (string, string1) {
+  iterate(this.res.json, string).forEach((element) => {
+    assert.ok(get(element, dotPath(string1)))
   })
 })
 
-Then('each {str} {str} has a value of {str}', function (str, str2, str3) {
-  arr(this.res.json, dotPath(this.res.json, string)).forEach((element) => {
-    assert.strictEqual(get(element, dotPath(this.res.json, string2)), string3)
-  })
-})
+Then(
+  'each {string} {string} has a value of {string}',
+  function (string, string2, string3) {
+    iterate(this.res.json, string).forEach((element) => {
+      assert.strictEqual(get(element, dotPath(string2)), string3)
+    })
+  },
+)
+
+Then(
+  '{int} {string} {string} has a value of {string}',
+  function (int, string, string2, string3) {
+    let count = 0
+    iterate(this.res.json, string).forEach((element) => {
+      if (get(element, dotPath(string2)).toString() == string3) {
+        count = ++count
+      }
+    })
+    assert.strictEqual(count, int)
+  },
+)
+
+Then(
+  'each {string} {string} is before {string}',
+  function (string, date, date) {
+    iterate(this.res.json, string).forEach((element) => {
+      const before = new Date(get(element, dotPath(string2)))
+      const after = new Date(get(element, dotPath(string3)))
+      assert(before < after)
+    })
+  },
+)
+
+// Feature: Single day’s schedule
 
 // Background:
 //   When I make a request to "/api/RMSTest/ibltest"
@@ -41,30 +70,25 @@ Then('each {str} {str} has a value of {str}', function (str, str2, str3) {
 //     And the response time is below 1000 milliseconds
 
 // Scenario: 2. Id and type are populated
-//   Then the "channel id" has a value
-//     And each "elements episode type" has a value of "episode"
+//   Then the "schedule channel id" has a value
+//     And each "schedule elements" "episode type" has a value of "episode"
 
 // Scenario: 3. Episode titles are populated
-//   Then each "elements episode title" has a value
+//   Then each "schedule elements" "episode title" has a value
 
 // Scenario: 4. Only one episode has a valsue of "live"
-//   Then 1 "elements episode" has a value of "live"
+//   Then 1 "schedule elements"  "episode" has a value of "live"
 
 // Scenario: 5. Transmission start date is before transmission end date
-//   Then each "elements transmission_start_date" is before the "elements transmission_end_date"
+//   Then each "schedule elements" "transmission_start_date" is before the "schedule elements" "transmission_end_date"
 
 // Scenario: 6. The Date value is the current time
 //   Then the Date header value is the current time
 
-const dotPath = function (json, string) {
-  return string.replaceAll(' ', '.').replace(/^/, feedType(json))
+const dotPath = (string) => {
+  return string.replaceAll(' ', '.')
 }
 
-const arr = function (json, string) {
-  const path = dotPath(json, string)
-  return get(json, path.substring(0, path.lastIndexOf('.')))
-}
-
-const feedType = function (json) {
-  return `${Object.keys(json)[0]}.`
+const iterate = (json, string) => {
+  return get(json, dotPath(string))
 }
