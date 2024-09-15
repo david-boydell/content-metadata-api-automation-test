@@ -7,8 +7,10 @@ Clone the repo then use the following steps:
 2. `npm install`
 3. `nvm use` (if v20.17.0 is not installed please use `nvm install`)
 4. `npx cucumber-js`
+
 Once the tests have finished running:
 5. `open cucumber-report.html`
+
 ## General structure
 `cucumber.js` The config file for cucumber, this allows for the default https://testapi.io to be overriden on the command line. It also specifies the report type.
 
