@@ -9,6 +9,7 @@ Clone the repo then use the following steps:
 4. `npx cucumber-js`
 
 Once the tests have finished running:
+
 5. `open cucumber-report.html`
 
 ## General structure
