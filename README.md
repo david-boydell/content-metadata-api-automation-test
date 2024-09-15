@@ -13,7 +13,7 @@ Once the tests have finished running:
 5. `open cucumber-report.html`
 
 ## General structure
-`cucumber.js` The config file for cucumber, this allows for the default https://testapi.io to be overriden on the command line. It also specifies the report type.
+`cucumber.js` The config file for cucumber, this allows for the default endpoint, https://testapi.io, to be overriden on the command line. It also specifies the report type.
 
 `features/todaySchedule.feature` contains Scenarios 1-6 from the _Content Metadata API Automation Test_ document.
 
