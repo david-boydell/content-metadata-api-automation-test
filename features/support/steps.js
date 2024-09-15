@@ -51,39 +51,19 @@ Then(
 
 Then(
   'each {string} {string} is before {string}',
-  function (string, date, date) {
+  function (string, string1, string2) {
     iterate(this.res.json, string).forEach((element) => {
-      const before = new Date(get(element, dotPath(string2)))
-      const after = new Date(get(element, dotPath(string3)))
+      const before = Date.parse(get(element, dotPath(string1)))
+      const after = Date.parse(get(element, dotPath(string2)))
       assert(before < after)
     })
   },
 )
 
-// Feature: Single day’s schedule
-
-// Background:
-//   When I make a request to "/api/RMSTest/ibltest"
-
-// Scenario: 1. A valid HTTP response is received
-//   Then the response code is "200"
-//     And the response time is below 1000 milliseconds
-
-// Scenario: 2. Id and type are populated
-//   Then the "schedule channel id" has a value
-//     And each "schedule elements" "episode type" has a value of "episode"
-
-// Scenario: 3. Episode titles are populated
-//   Then each "schedule elements" "episode title" has a value
-
-// Scenario: 4. Only one episode has a valsue of "live"
-//   Then 1 "schedule elements"  "episode" has a value of "live"
-
-// Scenario: 5. Transmission start date is before transmission end date
-//   Then each "schedule elements" "transmission_start_date" is before the "schedule elements" "transmission_end_date"
-
-// Scenario: 6. The Date value is the current time
-//   Then the Date header value is the current time
+Then('the Date header value is the current time', function () {
+  var t = new Date()
+  assert(Date.parse(this.res.headers.date) <= t.setSeconds(t.getSeconds() + 1))
+})
 
 const dotPath = (string) => {
   return string.replaceAll(' ', '.')
