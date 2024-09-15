@@ -25,4 +25,4 @@ Once the tests have finished running:
 
 ## Caveats
 1. I have not used `Given` in my feature files or step definition files, this is intentional.
-2. I have included eslint and prettier. If this interferes with your set up please uninstall.
+2. I have included eslint and prettier. If this interferes with your setup please uninstall.
