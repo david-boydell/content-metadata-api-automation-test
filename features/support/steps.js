@@ -86,7 +86,7 @@ Then(
   },
 )
 
-// This function parses the response Date field, and then asserts that that its
+// This function parses the response Date header, and then asserts that that its
 // value is now, or thereabouts. The this.parameters.responseUpperLimit is set
 // in cucumber.js, I cannot  rely on the value set in Scenario 1 having been run
 Then('the Date header value is the current time', function () {
