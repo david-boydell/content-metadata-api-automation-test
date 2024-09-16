@@ -15,7 +15,7 @@ When('I make a request to {string}', async function (string) {
 })
 
 // This function asserts the response code matches the code specified.
-Then('the response code is {string}', async function (string) {
+Then('the response code is {string}', function (string) {
   assert.strictEqual(this.res.statusCode.toString(), string)
 })
 
