@@ -73,7 +73,7 @@ Then(
   },
 )
 
-// This function iterates over an array, asserting that a one date is earlier
+// This function iterates over an array, asserting that one date is earlier
 // than another.
 Then(
   'each {string} {string} is before {string}',
