@@ -15,9 +15,9 @@ Once the tests have finished running:
 ## General structure
 `cucumber.js` The config file for cucumber, this allows for the default baseUrl to be set, https://testapi.io, and also overriden on the command line. It also specifies the report type.
 
-`features/todaySchedule.feature` contains Scenarios 1-6 from the _Content Metadata API Automation Test_ document.
+`features/today-schedule.feature` contains Scenarios 1-6 from the _Content Metadata API Automation Test_ document.
 
-`features/negativeSchedule.feature` contains Scenario 7.
+`features/negative-schedule.feature` contains Scenario 7.
 
 `features/functional-manual-testing.feature` contains the manual scenarios.
 
