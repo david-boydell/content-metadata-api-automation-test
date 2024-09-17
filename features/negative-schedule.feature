@@ -1,3 +1,4 @@
+@run
 Feature: Single day’s schedule
 
 Scenario: 1. A valid HTTP response is received
