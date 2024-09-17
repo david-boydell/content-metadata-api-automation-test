@@ -23,6 +23,8 @@ Once the tests have finished running:
 
 `features/support/helpers.js` contains a couple of helper functions that I have used in step.js.
 
+`functional-manual-testing.feature` contains te manual scenarios.
+
 ## Caveats
 1. I have not used `Given` in my feature files or step definition files, this is intentional.
 2. I have included eslint and prettier. If this interferes with your setup please uninstall.
