@@ -1,3 +1,4 @@
+@do-not-run
 Feature: Single day’s schedule
 
 Scenario: Each episode has an original version
