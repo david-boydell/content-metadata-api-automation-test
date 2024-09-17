@@ -1,11 +1,7 @@
 import get from 'lodash.get'
 
-const dotPath = (string) => {
-  return string.replaceAll(' ', '.')
-}
-
 const iterate = (json, string) => {
-  return get(json, dotPath(string))
+  return get(json, string)
 }
 
-export { dotPath, iterate }
+export { iterate }

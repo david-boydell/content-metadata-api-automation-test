@@ -1,5 +1,5 @@
 import { When, Then } from '@cucumber/cucumber'
-import { dotPath, iterate } from './helpers.js'
+import { iterate } from './helpers.js'
 import assert from 'node:assert/strict'
 import path from 'path'
 import got from 'got'
@@ -28,32 +28,32 @@ Then('the response time is below {int} milliseconds', function (int) {
 // This function asserts that a specific property exists on an object. The get
 // function takes the response json and a dot path to retrieve the property (if
 // it exists).
-Then('the {string} {string} property exists', function (string, string1) {
-  assert(string1 in get(this.res.json, dotPath(string)))
+Then('the {dotPath} {string} property exists', function (dotPath, string) {
+  assert(string in get(this.res.json, dotPath))
 })
 
 // This function asserts that a given property has a value. assert.ok() tests if
 // value is truthy.
-Then('the {string} has a value', function (string) {
-  assert.ok(get(this.res.json, dotPath(string)))
+Then('the {dotPath} has a value', function (dotPath) {
+  assert.ok(get(this.res.json, dotPath))
 })
 
 // This function iterates over an array, returned from the response body (the
 // iterate function is imported from helpers.js). It asserts that a given
 // property is truthy for each element in the array.
-Then('each {string} {string} has a value', function (string, string1) {
-  iterate(this.res.json, string).forEach((element) => {
-    assert.ok(get(element, dotPath(string1)))
+Then('each {dotPath} {dotPath} has a value', function (dotPath, dotPath1) {
+  iterate(this.res.json, dotPath).forEach((element) => {
+    assert.ok(get(element, dotPath1))
   })
 })
 
 // This function asserts that a given property has a specific value for each
 // element in the array.
 Then(
-  'each {string} {string} has a value of {string}',
-  function (string, string2, string3) {
-    iterate(this.res.json, string).forEach((element) => {
-      assert.strictEqual(get(element, dotPath(string2)), string3)
+  'each {dotPath} {dotPath} has a value of {string}',
+  function (dotPath, dotPath1, string) {
+    iterate(this.res.json, dotPath).forEach((element) => {
+      assert.strictEqual(get(element, dotPath1), string)
     })
   },
 )
@@ -61,11 +61,11 @@ Then(
 // This function asserts that only x elements in an array have a particular
 // value
 Then(
-  '{int} {string} {string} has a value of {string}',
-  function (int, string, string2, string3) {
+  '{int} {dotPath} {dotPath} has a value of {string}',
+  function (int, dotPath, dotPath1, string) {
     let count = 0
-    iterate(this.res.json, string).forEach((element) => {
-      if (get(element, dotPath(string2)).toString() == string3) {
+    iterate(this.res.json, dotPath).forEach((element) => {
+      if (get(element, dotPath1).toString() == string) {
         count = ++count
       }
     })
@@ -76,11 +76,11 @@ Then(
 // This function iterates over an array, asserting that one date is earlier
 // than another.
 Then(
-  'each {string} {string} is before {string}',
-  function (string, string1, string2) {
-    iterate(this.res.json, string).forEach((element) => {
-      const before = Date.parse(get(element, dotPath(string1)))
-      const after = Date.parse(get(element, dotPath(string2)))
+  'each {dotPath} {dotPath} is before {dotPath}',
+  function (dotPath, dotPath1, dotPath2) {
+    iterate(this.res.json, dotPath).forEach((element) => {
+      const before = Date.parse(get(element, dotPath1))
+      const after = Date.parse(get(element, dotPath2))
       assert(before < after)
     })
   },
