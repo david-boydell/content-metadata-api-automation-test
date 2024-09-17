@@ -19,11 +19,12 @@ Once the tests have finished running:
 
 `features/negativeSchedule.feature` contains Scenario 7.
 
+`features/functional-manual-testing.feature` contains the manual scenarios.
+
 `features/support/steps.js` contains the cucumber steps.
 
 `features/support/helpers.js` contains a couple of helper functions that I have used in step.js.
 
-`features/support/functional-manual-testing.feature` contains the manual scenarios.
 
 ## Caveats
 1. I have not used `Given` in my feature files or step definition files, this is intentional.
