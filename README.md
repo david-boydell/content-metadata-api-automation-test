@@ -23,7 +23,7 @@ Once the tests have finished running:
 
 `features/support/steps.js` contains the cucumber steps.
 
-`features/support/parameter_types.js` defines the dotPath parameter.
+`features/support/parameter_types.js` defines the `dotPath` parameter.
 
 `features/support/helpers.js` contains a couple of helper functions that I have used in step.js.
 
